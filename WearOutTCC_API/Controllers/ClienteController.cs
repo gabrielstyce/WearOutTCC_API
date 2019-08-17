@@ -51,6 +51,5 @@ namespace WearOutTCC_API.Controllers
             return cliente;
         }
 
-        
     }
 }
