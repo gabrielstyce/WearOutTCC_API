@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -43,12 +42,48 @@ namespace WearOutTCC_API.Controllers
         {
             var cliente = await _context.Clientes.FindAsync(id);
 
-            if (cliente == null) 
-            {
+            if (cliente == null)
                 return NotFound();
-            }
 
             return cliente;
+        }
+
+        //POST: api/Cliente
+        [HttpPost]
+        public async Task<ActionResult<Cliente>> PostCliente(Cliente item)
+        {
+            _context.Clientes.Add(item);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetCliente), new { id = item.Id }, item);
+        }
+
+        //PUT: api/Cliente/5
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Cliente>> PutCliente(long id, Cliente item)
+        {
+            if (id != item.Id)
+                return BadRequest();
+
+            _context.Entry(item).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return item;
+        }
+
+        //DELETE: api/Cliente/5
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Cliente>> DeleteCliente(long id)
+        {
+            var cliente = await _context.Clientes.FindAsync(id);
+
+            if (cliente == null)
+                return BadRequest();
+
+            _context.Clientes.Remove(cliente);
+            await _context.SaveChangesAsync();
+
+            return NoContent();    
         }
 
     }
