@@ -71,20 +71,19 @@ namespace WearOutTCC_API.Controllers
             return item;
         }
 
-        //DELETE: api/Cliente/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Cliente>> DeleteCliente(long id)
-        {
-            var cliente = await _context.Clientes.FindAsync(id);
+        ////DELETE: api/Cliente/5
+        //[HttpDelete("{id}")]
+        //public async Task<ActionResult<Cliente>> DeleteCliente(long id)
+        //{
+        //    var cliente = await _context.Clientes.FindAsync(id);
 
-            if (cliente == null)
-                return BadRequest();
+        //    if (cliente == null)
+        //        return BadRequest();
 
-            _context.Clientes.Remove(cliente);
-            await _context.SaveChangesAsync();
+        //    _context.Clientes.Remove(cliente);
+        //    await _context.SaveChangesAsync();
 
-            return NoContent();    
-        }
-
+        //    return NoContent();    
+        //}
     }
 }

@@ -22,7 +22,10 @@ namespace WearOutTCC_API.Controllers
             {
                 //Create a new 'Fornecedor' if collection is empty
                 //wich means you can't delete all Fornecedors
-                _context.Fornecedors.Add(new Fornecedor { FullName = "First1" });
+                _context.Fornecedors.Add(new Fornecedor {
+                    FullName = "First1",
+                    Produto = { Id = 1 }
+                });
                 _context.SaveChanges();
             }
         }
@@ -70,18 +73,18 @@ namespace WearOutTCC_API.Controllers
         }
 
         //DELETE: api/Fornecedor/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Fornecedor>> DeleteFornecedor(long id)
-        {
-            var fornecedor = await _context.Fornecedors.FindAsync(id);
+        //[HttpDelete("{id}")]
+        //public async Task<ActionResult<Fornecedor>> DeleteFornecedor(long id)
+        //{
+        //    var fornecedor = await _context.Fornecedors.FindAsync(id);
 
-            if (fornecedor == null)
-                return BadRequest();
+        //    if (fornecedor == null)
+        //        return BadRequest();
 
-            _context.Fornecedors.Remove(fornecedor);
-            await _context.SaveChangesAsync();
+        //    _context.Fornecedors.Remove(fornecedor);
+        //    await _context.SaveChangesAsync();
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
     }
 }

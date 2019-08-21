@@ -77,18 +77,18 @@ namespace WearOutTCC_API.Controllers
         }
 
         //DELETE: api/Produtos/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Produto>> DeleteProduto(long id)
-        {
-            var produto = await _context.Produtos.FindAsync(id);
+        //[HttpDelete("{id}")]
+        //public async Task<ActionResult<Produto>> DeleteProduto(long id)
+        //{
+        //    var produto = await _context.Produtos.FindAsync(id);
 
-            if (produto == null)
-                return NotFound();
+        //    if (produto == null)
+        //        return NotFound();
 
-            _context.Produtos.Remove(produto);
-            await _context.SaveChangesAsync();
+        //    _context.Produtos.Remove(produto);
+        //    await _context.SaveChangesAsync();
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
     }
 }
