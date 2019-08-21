@@ -11,5 +11,6 @@ namespace WearOutTCC_API.Controllers
     [ApiController]
     public class NegociacaoController : ControllerBase
     {
+
     }
 }
