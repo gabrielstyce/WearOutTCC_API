@@ -1,4 +1,6 @@
-﻿namespace WearOutTCC_API.Models
+﻿using System;
+
+namespace WearOutTCC_API.Models
 {
     public class Produto
     {
@@ -11,19 +13,10 @@
         public long QtdProduto { get; set; }
         public long IdEstoque { get; set; }
         public string NomeEstoque { get; set; }
-
+        public long QtdFornecida { get; set; }
+        public DateTime DtFornecida { get; set; }
         public Vendedor Vendedor { get; set; }
         public Fornecedor Fornecedor { get; set; }
 
-        public Produto()
-        {
-            Vendedor = new Vendedor();
-            Fornecedor = new Fornecedor();
-        }
-
-        //public override string ToString()
-        //{
-        //    return base.ToString();
-        //}
     }
 }

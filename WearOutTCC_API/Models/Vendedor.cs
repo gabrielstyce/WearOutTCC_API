@@ -1,12 +1,11 @@
-﻿namespace WearOutTCC_API.Models
+﻿using System.Collections.Generic;
+
+namespace WearOutTCC_API.Models
 {
     public class Vendedor : User
     {
-        public long VendedorId { get; set; }
+        public List<Produto> Produtos { get; set; }
+        public List<Fornecedor> Fornecedor { get; set; }
 
-        //public override string ToString()
-        //{
-        //    return base.ToString();
-        //}
     }
 }
