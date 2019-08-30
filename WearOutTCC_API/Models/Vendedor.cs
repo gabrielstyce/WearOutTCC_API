@@ -5,7 +5,7 @@ namespace WearOutTCC_API.Models
     public class Vendedor : User
     {
         public List<Produto> Produtos { get; set; }
-        public List<Fornecedor> Fornecedor { get; set; }
+        public List<Fornecedor> Fornecedores { get; set; }
 
     }
 }

@@ -4,7 +4,7 @@ namespace WearOutTCC_API.Models
 {
     public class Produto
     {
-        public long Id { get; set; }
+        public long ProdutoId { get; set; }
         public long Codigo { get; set; }
         public string Name { get; set; }
         public string Descricao { get; set; }

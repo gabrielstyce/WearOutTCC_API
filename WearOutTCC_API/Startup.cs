@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
-using Microsoft.EntityFrameworkCore;
+using WearOutTCC_API.Models;
 
 namespace WearOutTCC_API
 {
@@ -20,7 +20,9 @@ namespace WearOutTCC_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+            services.AddDbContext<MyContextBase>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -34,5 +36,14 @@ namespace WearOutTCC_API
 
             app.UseMvc();
         }
+
+        //public void ConfigureServices(IServiceCollection services)
+        //{
+        //    services.Configure<CookiePolicyOptions>(options =>
+        //    {
+        //        options.CheckConsentNeeded = context => true;
+        //        options.MinimumSameSitePolicy = SameSiteMode.None;
+        //    });
+        //}
     }
 }
