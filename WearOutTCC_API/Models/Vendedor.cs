@@ -4,8 +4,13 @@ namespace WearOutTCC_API.Models
 {
     public class Vendedor : User
     {
-        public List<Produto> Produtos { get; set; }
-        public List<Fornecedor> Fornecedores { get; set; }
+        public string ProdutosID { get; set; }
+        public string FornecedoresID { get; set; }
+
+        public Vendedor()
+        {
+
+        }
 
     }
 }

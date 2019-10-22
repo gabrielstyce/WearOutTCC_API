@@ -9,7 +9,7 @@ namespace WearOutTCC_API.Models
         public string FullName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public long Cpf { get; set; }
+        public string Cpf { get; set; }
         public string Endereco { get; set; }
         public string Cidade { get; set; }
         public string Estado { get; set; }

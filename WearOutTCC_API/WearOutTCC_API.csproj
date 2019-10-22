@@ -6,17 +6,27 @@
     <StartupObject></StartupObject>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\Gabriel\source\repos\WearOutTCC_API\WearOutTCC_API\WearOutTCC_API.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="Migrations\20190830163216_Modelos.cs" />
     <Compile Remove="Migrations\20190830163216_Modelos.Designer.cs" />
     <Compile Remove="Migrations\20190830163812_Modelos.cs" />
     <Compile Remove="Migrations\20190830163812_Modelos.Designer.cs" />
+    <Compile Remove="Migrations\20190830164553_Modelo_Final.cs" />
+    <Compile Remove="Migrations\20190830164553_Modelo_Final.Designer.cs" />
+    <Compile Remove="Migrations\20190902221306_Modelos_Final.cs" />
+    <Compile Remove="Migrations\20190902221306_Modelos_Final.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
   </ItemGroup>
 
   <ItemGroup>

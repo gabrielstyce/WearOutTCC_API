@@ -2,6 +2,7 @@
 
 namespace WearOutTCC_API.Models
 {
+#pragma warning disable CS1591
     public class MyContextBase : DbContext
     {
         public MyContextBase() { }
@@ -16,11 +17,9 @@ namespace WearOutTCC_API.Models
         public DbSet<Negociacao> Negociacoes { get; set; }
         public DbSet<Vendedor> Vendedors { get; set; }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ForSqlServerUseIdentityColumns();
-            modelBuilder.HasDefaultSchema("wearOut_TCC");
-
             ConfigureCliente(modelBuilder);
             ConfigureFornecedor(modelBuilder);
             ConfigureVendedor(modelBuilder);
@@ -40,7 +39,7 @@ namespace WearOutTCC_API.Models
                     ent.Property(c => c.FullName).HasColumnName("fullName").HasMaxLength(50);
                     ent.Property(c => c.Email).HasColumnName("email").HasMaxLength(50);
                     ent.Property(c => c.Password).HasColumnName("password").HasMaxLength(20);
-                    ent.Property(c => c.Cpf).HasColumnName("cpf");
+                    ent.Property(c => c.Cpf).HasColumnName("cpf").HasMaxLength(14);
                     ent.Property(c => c.Endereco).HasColumnName("endereco").HasMaxLength(20);
                     ent.Property(c => c.Cidade).HasColumnName("cidade").HasMaxLength(20);
                     ent.Property(c => c.Estado).HasColumnName("estado").HasMaxLength(20);
@@ -61,16 +60,13 @@ namespace WearOutTCC_API.Models
                     ent.Property(f => f.FullName).HasColumnName("fullName").HasMaxLength(50);
                     ent.Property(f => f.Email).HasColumnName("email").HasMaxLength(50);
                     ent.Property(f => f.Password).HasColumnName("password").HasMaxLength(20);
-                    ent.Property(f => f.Cpf).HasColumnName("cpf");
+                    ent.Property(c => c.Cpf).HasColumnName("cpf").HasMaxLength(14);
                     ent.Property(f => f.Endereco).HasColumnName("endereco").HasMaxLength(20);
                     ent.Property(f => f.Cidade).HasColumnName("cidade").HasMaxLength(20);
                     ent.Property(f => f.Estado).HasColumnName("estado").HasMaxLength(20);
                     ent.Property(f => f.Cep).HasColumnName("cep");
                     ent.Property(f => f.tipo).HasColumnName("tipo").HasDefaultValue('F');
                     ent.Property(f => f.Phone).HasColumnName("phone");
-                    ent.HasOne(f => f.Vendedor).WithMany(f => f.Fornecedores);
-                    
-                    
                 });
         }
 
@@ -86,7 +82,7 @@ namespace WearOutTCC_API.Models
                     ent.Property(v => v.FullName).HasColumnName("fullName").HasMaxLength(50);
                     ent.Property(v => v.Email).HasColumnName("email").HasMaxLength(50);
                     ent.Property(v => v.Password).HasColumnName("password").HasMaxLength(20);
-                    ent.Property(v => v.Cpf).HasColumnName("cpf");
+                    ent.Property(c => c.Cpf).HasColumnName("cpf").HasMaxLength(14);
                     ent.Property(v => v.Endereco).HasColumnName("endereco").HasMaxLength(20);
                     ent.Property(v => v.Cidade).HasColumnName("cidade").HasMaxLength(20);
                     ent.Property(v => v.Estado).HasColumnName("estado").HasMaxLength(20);
@@ -113,7 +109,6 @@ namespace WearOutTCC_API.Models
                     ent.Property(p => p.NomeEstoque).HasColumnName("nomeEstoque").HasMaxLength(50);
                     ent.Property(p => p.QtdFornecida).HasColumnName("qtdFornecida");
                     ent.Property(p => p.DtFornecida).HasColumnName("dtFornecida").HasColumnType("datetime");
-                    ent.HasOne(p => p.Vendedor).WithMany(p => p.Produtos);
                 });
         }
 
@@ -126,9 +121,9 @@ namespace WearOutTCC_API.Models
                     ent.HasKey(n => n.NegociacaoId).HasName("negociacaoId");
                     ent.Property(n => n.DtNegociacao).HasColumnName("dtNegociacao").HasColumnType("datetime");
                     ent.Property(n => n.ValorTotal).HasColumnName("valorTotal").HasColumnType("decimal(10, 2)");
-                    ent.HasOne(n => n.Cliente).WithMany(n => n.Negociacoes);
                 });
         }
     }
+#pragma warning restore CS1591
 }
 

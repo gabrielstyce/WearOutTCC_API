@@ -15,8 +15,8 @@ namespace WearOutTCC_API.Models
         public string NomeEstoque { get; set; }
         public long QtdFornecida { get; set; }
         public DateTime DtFornecida { get; set; }
-        public Vendedor Vendedor { get; set; }
-        public Fornecedor Fornecedor { get; set; }
+        public long VendedorID { get; set; }
+        public long FornecedorID { get; set; }
 
     }
 }

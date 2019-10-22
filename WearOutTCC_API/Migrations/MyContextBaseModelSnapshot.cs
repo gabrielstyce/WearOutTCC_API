@@ -15,7 +15,6 @@ namespace WearOutTCC_API.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("wearOut_TCC")
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -34,8 +33,9 @@ namespace WearOutTCC_API.Migrations
                         .HasColumnName("cidade")
                         .HasMaxLength(20);
 
-                    b.Property<long>("Cpf")
-                        .HasColumnName("cpf");
+                    b.Property<string>("Cpf")
+                        .HasColumnName("cpf")
+                        .HasMaxLength(14);
 
                     b.Property<string>("Email")
                         .HasColumnName("email")
@@ -52,6 +52,8 @@ namespace WearOutTCC_API.Migrations
                     b.Property<string>("FullName")
                         .HasColumnName("fullName")
                         .HasMaxLength(50);
+
+                    b.Property<string>("NegociacoesID");
 
                     b.Property<string>("Password")
                         .HasColumnName("password")
@@ -88,8 +90,9 @@ namespace WearOutTCC_API.Migrations
                         .HasColumnName("cidade")
                         .HasMaxLength(20);
 
-                    b.Property<long>("Cpf")
-                        .HasColumnName("cpf");
+                    b.Property<string>("Cpf")
+                        .HasColumnName("cpf")
+                        .HasMaxLength(14);
 
                     b.Property<string>("Email")
                         .HasColumnName("email")
@@ -114,11 +117,13 @@ namespace WearOutTCC_API.Migrations
                     b.Property<long>("Phone")
                         .HasColumnName("phone");
 
+                    b.Property<string>("ProdutosID");
+
                     b.Property<string>("UserName")
                         .HasColumnName("userName")
                         .HasMaxLength(12);
 
-                    b.Property<long?>("VendedorUserId");
+                    b.Property<long>("VendedorID");
 
                     b.Property<string>("tipo")
                         .IsRequired()
@@ -130,8 +135,6 @@ namespace WearOutTCC_API.Migrations
                     b.HasKey("UserId")
                         .HasName("fornecedorId");
 
-                    b.HasIndex("VendedorUserId");
-
                     b.ToTable("tbFornecedor");
                 });
 
@@ -141,24 +144,22 @@ namespace WearOutTCC_API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long?>("ClienteUserId");
+                    b.Property<long>("ClienteID");
 
                     b.Property<DateTime>("DtNegociacao")
                         .HasColumnName("dtNegociacao")
                         .HasColumnType("datetime");
 
+                    b.Property<string>("ProdutosID");
+
                     b.Property<decimal>("ValorTotal")
                         .HasColumnName("valorTotal")
                         .HasColumnType("decimal(10, 2)");
 
-                    b.Property<long?>("VendedorUserId");
+                    b.Property<long>("VendedorID");
 
                     b.HasKey("NegociacaoId")
                         .HasName("negociacaoId");
-
-                    b.HasIndex("ClienteUserId");
-
-                    b.HasIndex("VendedorUserId");
 
                     b.ToTable("tbNegociacao");
                 });
@@ -185,7 +186,7 @@ namespace WearOutTCC_API.Migrations
                         .HasColumnName("dtFornecida")
                         .HasColumnType("datetime");
 
-                    b.Property<long?>("FornecedorUserId");
+                    b.Property<long>("FornecedorID");
 
                     b.Property<long>("IdEstoque")
                         .HasColumnName("idEstoque");
@@ -193,8 +194,6 @@ namespace WearOutTCC_API.Migrations
                     b.Property<string>("Name")
                         .HasColumnName("name")
                         .HasMaxLength(50);
-
-                    b.Property<long?>("NegociacaoId");
 
                     b.Property<string>("NomeEstoque")
                         .HasColumnName("nomeEstoque")
@@ -210,16 +209,10 @@ namespace WearOutTCC_API.Migrations
                     b.Property<long>("QtdProduto")
                         .HasColumnName("qtdProduto");
 
-                    b.Property<long?>("VendedorUserId");
+                    b.Property<long>("VendedorID");
 
                     b.HasKey("ProdutoId")
                         .HasName("produtoId");
-
-                    b.HasIndex("FornecedorUserId");
-
-                    b.HasIndex("NegociacaoId");
-
-                    b.HasIndex("VendedorUserId");
 
                     b.ToTable("tbProduto");
                 });
@@ -238,8 +231,9 @@ namespace WearOutTCC_API.Migrations
                         .HasColumnName("cidade")
                         .HasMaxLength(20);
 
-                    b.Property<long>("Cpf")
-                        .HasColumnName("cpf");
+                    b.Property<string>("Cpf")
+                        .HasColumnName("cpf")
+                        .HasMaxLength(14);
 
                     b.Property<string>("Email")
                         .HasColumnName("email")
@@ -253,6 +247,8 @@ namespace WearOutTCC_API.Migrations
                         .HasColumnName("estado")
                         .HasMaxLength(20);
 
+                    b.Property<string>("FornecedoresID");
+
                     b.Property<string>("FullName")
                         .HasColumnName("fullName")
                         .HasMaxLength(50);
@@ -260,6 +256,8 @@ namespace WearOutTCC_API.Migrations
                     b.Property<string>("Password")
                         .HasColumnName("password")
                         .HasMaxLength(20);
+
+                    b.Property<string>("ProdutosID");
 
                     b.Property<string>("UserName")
                         .HasColumnName("userName")
@@ -276,39 +274,6 @@ namespace WearOutTCC_API.Migrations
                         .HasName("vendedorId");
 
                     b.ToTable("tbVendedor");
-                });
-
-            modelBuilder.Entity("WearOutTCC_API.Models.Fornecedor", b =>
-                {
-                    b.HasOne("WearOutTCC_API.Models.Vendedor", "Vendedor")
-                        .WithMany("Fornecedores")
-                        .HasForeignKey("VendedorUserId");
-                });
-
-            modelBuilder.Entity("WearOutTCC_API.Models.Negociacao", b =>
-                {
-                    b.HasOne("WearOutTCC_API.Models.Cliente", "Cliente")
-                        .WithMany("Negociacoes")
-                        .HasForeignKey("ClienteUserId");
-
-                    b.HasOne("WearOutTCC_API.Models.Vendedor", "Vendedor")
-                        .WithMany()
-                        .HasForeignKey("VendedorUserId");
-                });
-
-            modelBuilder.Entity("WearOutTCC_API.Models.Produto", b =>
-                {
-                    b.HasOne("WearOutTCC_API.Models.Fornecedor", "Fornecedor")
-                        .WithMany("Produtos")
-                        .HasForeignKey("FornecedorUserId");
-
-                    b.HasOne("WearOutTCC_API.Models.Negociacao")
-                        .WithMany("Produtos")
-                        .HasForeignKey("NegociacaoId");
-
-                    b.HasOne("WearOutTCC_API.Models.Vendedor", "Vendedor")
-                        .WithMany("Produtos")
-                        .HasForeignKey("VendedorUserId");
                 });
 #pragma warning restore 612, 618
         }

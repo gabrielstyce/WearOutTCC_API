@@ -4,7 +4,7 @@ namespace WearOutTCC_API.Models
 {
     public class Cliente : User
     {
-        public List<Negociacao> Negociacoes { get; set; }
+        public string NegociacoesID { get; set; }
 
         public Cliente()
         {
